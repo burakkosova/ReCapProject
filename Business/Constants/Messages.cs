@@ -12,8 +12,10 @@ namespace Business.Constants
         public static string UserDeleted = "Kullanıcı silindi.";
         public static string CarUpdated= "Araç güncellendi.";
         public static string UserUpdated= "Kullanıcı güncellendi.";
+        public static string CustomerUpdated= "Müşteri güncellendi.";
         public static string BrandAdded = "Marka eklendi.";
         public static string BrandDeleted = "Marka silindi.";
+        public static string CustomerDeleted = "Müşteri silindi.";
         public static string BrandUpdated = "Marka güncellendi";
         public static string ColorAdded = "Renk eklendi.";
         public static string ColorDeleted = "Renk silindi.";
@@ -23,8 +25,10 @@ namespace Business.Constants
         public static string CarNotFound = "Araç bulunamadı.";
         public static string BrandNotFound = "Marka bulunamadı.";
         public static string ColorNotFound = "Renk bulunamadı.";
+        public static string CustomerNotFound = "Müşteri bulunamadı.";
         public static string UserNotFound = "Renk bulunamadı.";
         public static string BrandAlreadyExists = "Marka veritabanında zaten var!";
         public static string ColorAlreadyExists = "Renk veritabanında zaten var!";
+        public static string CustomerAdded = "Müşteri eklendi";
     }
 }
