@@ -39,11 +39,12 @@ namespace Business.Concrete
 
         public IDataResult<Rental> GetById(int rentalId)
         {
-            if (_rentalDal.Get(r => r.Id == rentalId) == null)
+            var rental = _rentalDal.Get(r => r.Id == rentalId);
+            if (rental == null)
             {
                 return new ErrorDataResult<Rental>(Messages.RentalNotFound);
             }
-            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == rentalId));
+            return new SuccessDataResult<Rental>(rental);
         }
 
         public IResult Update(Rental rental)
