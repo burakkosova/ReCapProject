@@ -12,7 +12,7 @@ namespace ConsoleUI
         {
             //CarTest();
             //BrandTest();
-            ColorTest();
+            //ColorTest();
             //DtoTest();
         }
 
