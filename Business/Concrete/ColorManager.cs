@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -16,29 +18,48 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
-        public void Add(Color color)
+        public IResult Add(Color color)
         {
+            if (_colorDal.Get(c => c.Name.ToUpper() == color.Name.ToUpper()) != null)
+            {
+                return new ErrorResult(Messages.ColorAlreadyExists);
+            }
             _colorDal.Add(color);
+            return new SuccesResult(Messages.ColorAdded);
         }
 
-        public void Delete(Color color)
+        public IResult Delete(Color color)
         {
+            if (_colorDal.Get(c => c.Id == color.Id) == null)
+            {
+                return new ErrorResult(Messages.ColorNotFound);
+            }
             _colorDal.Delete(color);
+            return new SuccesResult(Messages.ColorDeleted);
         }
 
-        public List<Color> GetAll()
+        public IDataResult<List<Color>> GetAll()
         {
-            return _colorDal.GetAll();
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll());
         }
 
-        public Color GetById(int id)
+        public IDataResult<Color> GetById(int id)
         {
-            return _colorDal.Get(c => c.Id == id);
+            if (_colorDal.Get(c => c.Id == id) == null)
+            {
+                return new ErrorDataResult<Color>(Messages.ColorNotFound);
+            }
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.Id == id));
         }
 
-        public void Update(Color color)
+        public IResult Update(Color color)
         {
+            if (_colorDal.Get(c => c.Id == color.Id) == null)
+            {
+                return new ErrorResult(Messages.ColorNotFound);
+            }
             _colorDal.Update(color);
+            return new SuccesResult(Messages.ColorUpdated);
         }
     }
 }
