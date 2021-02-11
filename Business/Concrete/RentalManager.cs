@@ -18,6 +18,14 @@ namespace Business.Concrete
         }
         public IResult Add(Rental rental)
         {
+            var carRentalList = _rentalDal.GetAll(r => r.CarId == rental.CarId);
+            foreach (var carRental in carRentalList)
+            {
+                if (carRental.ReturnDate == null)
+                {
+                    return new ErrorResult("Araç kiralanamaz çünkü başka bir müşteride ");
+                }
+            }
             _rentalDal.Add(rental);
             return new SuccesResult(Messages.RentalAdded);
         }
