@@ -19,6 +19,7 @@ namespace Business.Concrete
 
         public IResult Add(User user)
         {
+
             _userDal.Add(user);
             return new SuccesResult(Messages.UserAdded);
         }

@@ -18,6 +18,10 @@ namespace Business.Concrete
         }
         public IResult Add(Customer customer)
         {
+            if (_customerDal.Get(c => c.UserId == customer.UserId) != null)
+            {
+                return new ErrorResult(Messages.CustomerAlreadyExists);
+            }
             _customerDal.Add(customer);
             return new SuccesResult(Messages.CustomerAdded);
         }

@@ -21,9 +21,9 @@ namespace Business.Concrete
             var carRentalList = _rentalDal.GetAll(r => r.CarId == rental.CarId);
             foreach (var carRental in carRentalList)
             {
-                if (carRental.ReturnDate == null || carRental.ReturnDate > DateTime.Now)
+                if (carRental.ReturnDate == null || carRental.ReturnDate > DateTime.Now || carRental.ReturnDate > rental.RentDate)
                 {
-                    return new ErrorResult("Araç kiralanamaz çünkü başka bir müşteride ");
+                    return new ErrorResult("Araç kiralanamaz çünkü başka bir müşteride");
                 }
             }
             _rentalDal.Add(rental);

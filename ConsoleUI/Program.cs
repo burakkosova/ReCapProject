@@ -14,6 +14,33 @@ namespace ConsoleUI
             //BrandTest();
             //ColorTest();
             //DtoTest();
+            RentalTest();
+        }
+
+        private static void RentalTest()
+        {
+            //UserManager userManager = new UserManager(new EfUserDal());
+            //userManager.Add(new User { FirstName = "Burak", LastName = "Kosova", Email = "burak.kosova@hotmail.com", Password = "123456" });
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            var customerAddResult = customerManager.Add(new Customer { CompanyName = "Kosova Enterprise", UserId = 1 });
+            Console.WriteLine(customerAddResult.Message);
+
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+
+            var result = rentalManager.Add(new Rental { CarId = 5, CustomerId = 1, RentDate = new DateTime(2021, 02, 13, 18, 17, 53)});
+            Console.WriteLine(result.Message);
+
+            var rentalToUpdate = rentalManager.GetById(4).Data;
+            rentalToUpdate.ReturnDate = new DateTime(2021, 02, 13, 18, 30, 53);
+            rentalManager.Update(rentalToUpdate);
+
+            var rentResult = rentalManager.Add(new Rental { CarId = 5, CustomerId = 1, RentDate = new DateTime(2021, 02, 13, 18, 45, 53) });
+            Console.WriteLine(rentResult.Message);
+
+            foreach (var rental in rentalManager.GetAll().Data)
+            {
+                Console.WriteLine("Car ID: {0} Customer ID: {1} RentDate: {2}, ReturnData: {3}",rental.CarId,rental.CustomerId,rental.RentDate,rental.ReturnDate);
+            }
         }
 
         private static void ColorTest()

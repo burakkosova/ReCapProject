@@ -33,6 +33,7 @@ namespace Business.Constants
         public static string RentalNotFound = "Kiralama bilgisi bulunamadı.";
         public static string BrandAlreadyExists = "Marka veritabanında zaten var!";
         public static string ColorAlreadyExists = "Renk veritabanında zaten var!";
+        public static string CustomerAlreadyExists = "Bu userID ye sahip müşteri veritabanında zaten var!";
         public static string CustomerAdded = "Müşteri eklendi";
     }
 }
