@@ -30,7 +30,7 @@ namespace Business.Concrete
 
         public IResult Delete(Brand brand)
         {
-            if (_brandDal.Get(b => b.Id == brand.Id) == null)
+            if (_brandDal.Get(b => b.BrandId == brand.BrandId) == null)
             {
                 return new ErrorResult(Messages.BrandNotFound);
             }
@@ -46,16 +46,16 @@ namespace Business.Concrete
 
         public IDataResult<Brand> GetById(int id)
         {
-            if (_brandDal.Get(b => b.Id == id) == null)
+            if (_brandDal.Get(b => b.BrandId == id) == null)
             {
                 return new ErrorDataResult<Brand>(Messages.BrandNotFound);
             }
-            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.Id == id));
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.BrandId == id));
         }
 
         public IResult Update(Brand brand)
         {
-            if (_brandDal.Get(b => b.Id == brand.Id) == null)
+            if (_brandDal.Get(b => b.BrandId == brand.BrandId) == null)
             {
                 return new ErrorResult(Messages.BrandNotFound);
             }

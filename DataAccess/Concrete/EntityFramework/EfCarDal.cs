@@ -9,17 +9,17 @@ using System.Linq;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal : EfEntityRepositoryBase<Car, RentACarContext>, ICarDal
+    public class EfCarDal : EfEntityRepositoryBase<Car, CarRentalContext>, ICarDal
     {
         public List<CarDetailDto> GetCarDetails()
         {
-            using (RentACarContext context = new RentACarContext())
+            using (CarRentalContext context = new CarRentalContext())
             {
                 var result = from car in context.Cars
                              join color in context.Colors
-                             on car.ColorId equals color.Id
+                             on car.ColorId equals color.ColorId
                              join brand in context.Brands
-                             on car.BrandId equals brand.Id
+                             on car.BrandId equals brand.BrandId
                              select new CarDetailDto { CarName = car.Name, ColorName=color.Name, DailyPrice=car.DailyPrice, BrandName=brand.Name };
                 return result.ToList();
             }

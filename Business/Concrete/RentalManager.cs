@@ -32,7 +32,7 @@ namespace Business.Concrete
 
         public IResult Delete(Rental rental)
         {
-            if (_rentalDal.Get(r => r.Id == rental.Id) == null)
+            if (_rentalDal.Get(r => r.RentalId == rental.RentalId) == null)
             {
                 return new ErrorResult(Messages.RentalNotFound);
             }
@@ -47,7 +47,7 @@ namespace Business.Concrete
 
         public IDataResult<Rental> GetById(int rentalId)
         {
-            var rental = _rentalDal.Get(r => r.Id == rentalId);
+            var rental = _rentalDal.Get(r => r.RentalId == rentalId);
             if (rental == null)
             {
                 return new ErrorDataResult<Rental>(Messages.RentalNotFound);
@@ -57,7 +57,7 @@ namespace Business.Concrete
 
         public IResult Update(Rental rental)
         {
-            if (_rentalDal.Get(r => r.Id == rental.Id) == null)
+            if (_rentalDal.Get(r => r.RentalId == rental.RentalId) == null)
             {
                 return new ErrorResult(Messages.RentalNotFound);
             }

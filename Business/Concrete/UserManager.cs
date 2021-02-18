@@ -26,7 +26,7 @@ namespace Business.Concrete
 
         public IResult Delete(User user)
         {
-            if (_userDal.Get(u => u.Id == user.Id) == null)
+            if (_userDal.Get(u => u.UserId == user.UserId) == null)
             {
                 return new ErrorResult(Messages.UserNotFound);
             }
@@ -42,16 +42,16 @@ namespace Business.Concrete
 
         public IDataResult<User> GetById(int userId)
         {
-            if (_userDal.Get(u => u.Id == userId) == null)
+            if (_userDal.Get(u => u.UserId == userId) == null)
             {
                 return new ErrorDataResult<User>(Messages.UserNotFound);
             }
-            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == userId));
+            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == userId));
         }
 
         public IResult Update(User user)
         {
-            if (_userDal.Get(u => u.Id == user.Id) == null)
+            if (_userDal.Get(u => u.UserId == user.UserId) == null)
             {
                 return new ErrorResult(Messages.UserNotFound);
             }

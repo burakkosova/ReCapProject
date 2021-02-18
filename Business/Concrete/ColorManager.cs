@@ -30,7 +30,7 @@ namespace Business.Concrete
 
         public IResult Delete(Color color)
         {
-            if (_colorDal.Get(c => c.Id == color.Id) == null)
+            if (_colorDal.Get(c => c.ColorId == color.ColorId) == null)
             {
                 return new ErrorResult(Messages.ColorNotFound);
             }
@@ -45,16 +45,16 @@ namespace Business.Concrete
 
         public IDataResult<Color> GetById(int id)
         {
-            if (_colorDal.Get(c => c.Id == id) == null)
+            if (_colorDal.Get(c => c.ColorId == id) == null)
             {
                 return new ErrorDataResult<Color>(Messages.ColorNotFound);
             }
-            return new SuccessDataResult<Color>(_colorDal.Get(c => c.Id == id));
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == id));
         }
 
         public IResult Update(Color color)
         {
-            if (_colorDal.Get(c => c.Id == color.Id) == null)
+            if (_colorDal.Get(c => c.ColorId == color.ColorId) == null)
             {
                 return new ErrorResult(Messages.ColorNotFound);
             }

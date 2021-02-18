@@ -37,7 +37,7 @@ namespace Business.Concrete
 
         public IResult Delete(Car car)
         {
-            if (_carDal.Get(c => c.Id == car.Id) == null)
+            if (_carDal.Get(c => c.CarId == car.CarId) == null)
             {
                 return new ErrorResult(Messages.CarNotFound);
             }
@@ -56,13 +56,13 @@ namespace Business.Concrete
 
         public IDataResult<Car> GetById(int id)
         {
-            if (_carDal.Get(c => c.Id == id) == null)
+            if (_carDal.Get(c => c.CarId == id) == null)
             {
                 return new ErrorDataResult<Car>(Messages.CarNotFound);
             }
             else
             {
-                return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == id));
+                return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id));
             }
         }
 
@@ -78,7 +78,7 @@ namespace Business.Concrete
 
         public IResult Update(Car car)
         {
-            if (_carDal.Get(c => c.Id == car.Id) == null)
+            if (_carDal.Get(c => c.CarId == car.CarId) == null)
             {
                 return new ErrorResult(Messages.CarNotFound);
             }
