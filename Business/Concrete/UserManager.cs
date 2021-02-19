@@ -19,9 +19,12 @@ namespace Business.Concrete
 
         public IResult Add(User user)
         {
-
-            _userDal.Add(user);
-            return new SuccesResult(Messages.UserAdded);
+            if (user.FirstName.Length>2 && user.LastName.Length > 2 && user.Email.Length > 2 && user.Password.Length > 2)
+            {
+                _userDal.Add(user);
+                return new SuccesResult(Messages.UserAdded);
+            }
+            return new ErrorResult(Messages.InvalidUser);
         }
 
         public IResult Delete(User user)

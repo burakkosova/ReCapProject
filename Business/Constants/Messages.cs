@@ -6,6 +6,7 @@ namespace Business.Constants
 {
     public static class Messages
     {
+        public static string InvalidUser= "Kullanıcı bilgileri hatalı";
         public static string ColorsListed= "Renkler listelendi";
         public static string CarsListed= "Araçlar listelendi";
         public static string CarAdded = "Araç eklendi";
@@ -31,7 +32,7 @@ namespace Business.Constants
         public static string BrandNotFound = "Marka bulunamadı.";
         public static string ColorNotFound = "Renk bulunamadı.";
         public static string CustomerNotFound = "Müşteri bulunamadı.";
-        public static string UserNotFound = "Renk bulunamadı.";
+        public static string UserNotFound = "Kullanıcı bulunamadı.";
         public static string RentalNotFound = "Kiralama bilgisi bulunamadı.";
         public static string BrandAlreadyExists = "Marka veritabanında zaten var!";
         public static string ColorAlreadyExists = "Renk veritabanında zaten var!";
