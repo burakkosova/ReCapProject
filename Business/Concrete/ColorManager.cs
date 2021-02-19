@@ -49,7 +49,7 @@ namespace Business.Concrete
             {
                 return new ErrorDataResult<Color>(Messages.ColorNotFound);
             }
-            return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == id));
+            return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == id),Messages.ColorsListed);
         }
 
         public IResult Update(Color color)
