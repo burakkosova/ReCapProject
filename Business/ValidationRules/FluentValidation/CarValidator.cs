@@ -10,6 +10,8 @@ namespace Business.ValidationRules.FluentValidation
     {
         public CarValidator()
         {
+            RuleFor(c => c.CarId).Empty();
+
             RuleFor(c => c.Name).NotEmpty();
             RuleFor(c => c.Name).MinimumLength(2);
 

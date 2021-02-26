@@ -38,5 +38,6 @@ namespace Business.Constants
         public static string ColorAlreadyExists = "Renk veritabanında zaten var!";
         public static string CustomerAlreadyExists = "Bu userID ye sahip müşteri veritabanında zaten var!";
         public static string CustomerAdded = "Müşteri eklendi";
+        public static string CarImageAdded = "Araba fotoğrafı eklendi";
     }
 }

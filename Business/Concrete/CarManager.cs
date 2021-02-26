@@ -7,6 +7,7 @@ using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities;
+using Core.Utilities.Business;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -17,15 +18,25 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
+        IColorService _colorService;
+        IBrandService _brandService;
 
-        public CarManager(ICarDal carDal)
+        public CarManager(ICarDal carDal, IColorService colorService, IBrandService brandService)
         {
             _carDal = carDal;
+            _colorService = colorService;
+            _brandService = brandService;
         }
 
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
+            IResult result = BusinessRules.Run(CheckIfBrandExists(car.BrandId),CheckIfColorExists(car.ColorId));
+            if (result != null)
+            {
+                return result;
+            }
+
             _carDal.Add(car);
             return new SuccesResult(Messages.CarAdded);
         }
@@ -110,6 +121,26 @@ namespace Business.Concrete
                 return new ErrorDataResult<List<CarDetailDto>>(result, Messages.BrandNotFound);
             }
             return new SuccessDataResult<List<CarDetailDto>>(result,Messages.CarsListed);
+        }
+
+        private IResult CheckIfColorExists(int colorId)
+        {
+            var result = _colorService.GetById(colorId);
+            if (!result.Success)
+            {
+                return new ErrorResult(result.Message);
+            }
+            return new SuccesResult();
+        }
+
+        private IResult CheckIfBrandExists(int brandId)
+        {
+            var result = _brandService.GetById(brandId);
+            if (!result.Success)
+            {
+                return new ErrorResult(result.Message);
+            }
+            return new SuccesResult();
         }
     }
 }
