@@ -35,7 +35,7 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfRentalDal>().As<IRentalDal>().SingleInstance();
 
 
-            // Runtime da ayarladığımız aspectlerin çalışmasını sağlar. (Reflection)
+            // Ayarladığımız aspectlerin runtime da çalışmasını sağlar. (Reflection)
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()

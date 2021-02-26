@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Core.Utilities;
+using Core.Utilities.Business;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -20,10 +21,12 @@ namespace Business.Concrete
 
         public IResult Add(Color color)
         {
-            if (_colorDal.Get(c => c.Name.ToUpper() == color.Name.ToUpper()) != null)
+            IResult result = BusinessRules.Run(CheckIfColorNameExists(color.Name));
+            if (!result.Success)
             {
-                return new ErrorResult(Messages.ColorAlreadyExists);
+                return result;
             }
+
             _colorDal.Add(color);
             return new SuccesResult(Messages.ColorAdded);
         }
@@ -60,6 +63,15 @@ namespace Business.Concrete
             }
             _colorDal.Update(color);
             return new SuccesResult(Messages.ColorUpdated);
+        }
+
+        private IResult CheckIfColorNameExists(string colorName)
+        {
+            if (_colorDal.Get(c => c.Name.ToLower() == colorName.ToLower()) != null)
+            {
+                return new ErrorResult(Messages.ColorAlreadyExists);
+            }
+            return new SuccesResult();
         }
     }
 }
