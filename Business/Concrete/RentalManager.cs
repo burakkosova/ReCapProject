@@ -27,7 +27,7 @@ namespace Business.Concrete
                 }
             }
             _rentalDal.Add(rental);
-            return new SuccesResult(Messages.RentalAdded);
+            return new SuccessResult(Messages.RentalAdded);
         }
 
         public IResult Delete(Rental rental)
@@ -37,7 +37,7 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.RentalNotFound);
             }
             _rentalDal.Delete(rental);
-            return new SuccesResult(Messages.RentalDeleted);
+            return new SuccessResult(Messages.RentalDeleted);
         }
 
         public IDataResult<List<Rental>> GetAll()

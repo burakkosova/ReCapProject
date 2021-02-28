@@ -28,7 +28,7 @@ namespace Business.Concrete
             }
 
             _colorDal.Add(color);
-            return new SuccesResult(Messages.ColorAdded);
+            return new SuccessResult(Messages.ColorAdded);
         }
 
         public IResult Delete(Color color)
@@ -38,7 +38,7 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.ColorNotFound);
             }
             _colorDal.Delete(color);
-            return new SuccesResult(Messages.ColorDeleted);
+            return new SuccessResult(Messages.ColorDeleted);
         }
 
         public IDataResult<List<Color>> GetAll()
@@ -62,7 +62,7 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.ColorNotFound);
             }
             _colorDal.Update(color);
-            return new SuccesResult(Messages.ColorUpdated);
+            return new SuccessResult(Messages.ColorUpdated);
         }
 
         private IResult CheckIfColorNameExists(string colorName)
@@ -71,7 +71,7 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.ColorAlreadyExists);
             }
-            return new SuccesResult();
+            return new SuccessResult();
         }
     }
 }

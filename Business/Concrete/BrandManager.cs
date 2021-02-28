@@ -28,7 +28,7 @@ namespace Business.Concrete
             }
 
             _brandDal.Add(brand);
-            return new SuccesResult(Messages.BrandAdded);
+            return new SuccessResult(Messages.BrandAdded);
         }
 
         public IResult Delete(Brand brand)
@@ -40,7 +40,7 @@ namespace Business.Concrete
             }
 
             _brandDal.Delete(brand);
-            return new SuccesResult(Messages.BrandDeleted);
+            return new SuccessResult(Messages.BrandDeleted);
         }
 
         public IDataResult<List<Brand>> GetAll()
@@ -67,7 +67,7 @@ namespace Business.Concrete
             }
 
             _brandDal.Update(brand);
-            return new SuccesResult(Messages.BrandUpdated);
+            return new SuccessResult(Messages.BrandUpdated);
         }
 
         private IResult CheckIfBrandNameExists(string brandName)
@@ -77,7 +77,7 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.BrandAlreadyExists);
             }
 
-            return new SuccesResult();
+            return new SuccessResult();
         }
         
         private IResult CheckIfBrandExists(int brandId)
@@ -86,7 +86,7 @@ namespace Business.Concrete
             {
                 return new ErrorResult(Messages.BrandNotFound);
             }
-            return new SuccesResult();
+            return new SuccessResult();
         }
     }
 }

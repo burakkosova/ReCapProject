@@ -38,7 +38,7 @@ namespace Business.Concrete
             }
 
             _carDal.Add(car);
-            return new SuccesResult(Messages.CarAdded);
+            return new SuccessResult(Messages.CarAdded);
         }
 
         public IResult Delete(Car car)
@@ -48,7 +48,7 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.CarNotFound);
             }
             _carDal.Delete(car);
-            return new SuccesResult(Messages.CarDeleted);
+            return new SuccessResult(Messages.CarDeleted);
         }
 
         public IDataResult<List<Car>> GetAll()
@@ -95,7 +95,7 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.CarNotFound);
             }
             _carDal.Update(car);
-            return new SuccesResult(Messages.CarUpdated);
+            return new SuccessResult(Messages.CarUpdated);
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
@@ -130,7 +130,7 @@ namespace Business.Concrete
             {
                 return new ErrorResult(result.Message);
             }
-            return new SuccesResult();
+            return new SuccessResult();
         }
 
         private IResult CheckIfBrandExists(int brandId)
@@ -140,7 +140,7 @@ namespace Business.Concrete
             {
                 return new ErrorResult(result.Message);
             }
-            return new SuccesResult();
+            return new SuccessResult();
         }
     }
 }

@@ -39,5 +39,7 @@ namespace Business.Constants
         public static string CustomerAlreadyExists = "Bu userID ye sahip müşteri veritabanında zaten var!";
         public static string CustomerAdded = "Müşteri eklendi";
         public static string CarImageAdded = "Araba fotoğrafı eklendi";
+        public static string CarImageNotFound = "Fotograf bulunamadi";
+        public static string CarImageLimitExceeded = "Bir arabanın en fazla 5 fotoğrafı olabilir";
     }
 }

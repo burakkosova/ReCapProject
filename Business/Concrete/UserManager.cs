@@ -22,7 +22,7 @@ namespace Business.Concrete
             if (user.FirstName.Length>2 && user.LastName.Length > 2 && user.Email.Length > 2 && user.Password.Length > 2)
             {
                 _userDal.Add(user);
-                return new SuccesResult(Messages.UserAdded);
+                return new SuccessResult(Messages.UserAdded);
             }
             return new ErrorResult(Messages.InvalidUser);
         }
@@ -35,7 +35,7 @@ namespace Business.Concrete
             }
 
             _userDal.Delete(user);
-            return new SuccesResult(Messages.UserDeleted);
+            return new SuccessResult(Messages.UserDeleted);
         }
 
         public IDataResult<List<User>> GetAll()
@@ -59,7 +59,7 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.UserNotFound);
             }
             _userDal.Update(user);
-            return new SuccesResult(Messages.UserUpdated);
+            return new SuccessResult(Messages.UserUpdated);
         }
     }
 }
