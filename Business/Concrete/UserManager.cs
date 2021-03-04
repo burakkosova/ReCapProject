@@ -2,10 +2,8 @@
 using Business.Constants;
 using Core.Utilities;
 using DataAccess.Abstract;
-using Entities.Concrete;
-using System;
+using Core.Entities.Concrete;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Business.Concrete
 {
@@ -19,12 +17,8 @@ namespace Business.Concrete
 
         public IResult Add(User user)
         {
-            if (user.FirstName.Length>2 && user.LastName.Length > 2 && user.Email.Length > 2 && user.Password.Length > 2)
-            {
-                _userDal.Add(user);
-                return new SuccessResult(Messages.UserAdded);
-            }
-            return new ErrorResult(Messages.InvalidUser);
+            _userDal.Add(user);
+            return new SuccessResult(Messages.UserAdded);
         }
 
         public IResult Delete(User user)
@@ -50,6 +44,21 @@ namespace Business.Concrete
                 return new ErrorDataResult<User>(Messages.UserNotFound);
             }
             return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == userId));
+        }
+
+        public IDataResult<User> GetByMail(string email)
+        {
+            User result = _userDal.Get(u => u.Email == email);
+            if (result == null)
+            {
+                return new ErrorDataResult<User>(Messages.UserNotFound);
+            }
+            return new SuccessDataResult<User>(result);
+        }
+
+        public IDataResult<List<OperationClaim>> GetClaims(User user)
+        {
+            return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user));
         }
 
         public IResult Update(User user)
